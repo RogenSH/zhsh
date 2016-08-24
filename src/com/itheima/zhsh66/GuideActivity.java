@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
@@ -18,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 
-public class GuideActivity extends Activity {
+public class GuideActivity extends Activity implements OnClickListener {
 	private ViewPager mViewPager;
 
 	private int[] mImageIds = new int[] { R.drawable.guide_1,
@@ -166,6 +167,20 @@ public class GuideActivity extends Activity {
 			// TODO Auto-generated method stub
 			container.removeView((View) object);
 
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+
+		switch (v.getId()) {
+		case R.id.btn_start:
+			startActivities(new Intent(this,MainActivity.class));
+			break;
+
+			
+		default:
+			break;
 		}
 	}
 }
