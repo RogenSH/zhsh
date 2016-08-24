@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 public class GuideActivity extends Activity {
 	private ViewPager mViewPager;
@@ -23,6 +27,11 @@ public class GuideActivity extends Activity {
 
 	private LinearLayout llContainer;
 
+	private ImageView ivRedPoint;
+	
+	private int mPointWidth;
+
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -34,6 +43,8 @@ public class GuideActivity extends Activity {
 
 		llContainer = (LinearLayout) findViewById(R.id.ll_container_guide);
 
+		ivRedPoint=(ImageView)findViewById(R.id.iv_red_point);
+		
 		mImageViewList = new ArrayList<ImageView>();
 
 		// 在此处初始化ImageView可以减少初始化的次数，防止每次都进行初始化.以后使用只要从集合中取即可。
@@ -63,8 +74,22 @@ public class GuideActivity extends Activity {
 
 		mViewPager.setAdapter(new MyAdapter());
 		
-		//计算两个原点的间距
+		//页面绘制结束之后，计算两个原点的间距
+		//视图树
+		ivRedPoint.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+	
+
+			//layout方法执行结束（位置确定）
+			@Override
+			public void onGlobalLayout() {
+				//移除监听
+				ivRedPoint.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+				mPointWidth=llContainer.getChildAt(1).getLeft()-llContainer.getChildAt(0).getLeft();
+				Log.i("test_log", "width="+mPointWidth);
+			}
+		});
 		
+	
 		
 		
 		//设置监听滑动事件  （小红点随着页面滑动而变换位置）
@@ -80,8 +105,14 @@ public class GuideActivity extends Activity {
 			@Override
 			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 				// TODO Auto-generated method stub
-				
-		//		System.out.print("当前位置:"+position+";偏移百分比:"+positionOffset+";偏移像素:"+positionOffsetPixels);
+				Log.i("test_log", "当前位置:"+position);
+				Log.i("test_log","偏移百分比:"+positionOffset);
+				Log.i("test_log", "偏移像素:"+positionOffsetPixels);
+				//计算当前小红点的左边距
+				int leftMargin=(int) (mPointWidth * positionOffset+position*mPointWidth);
+				RelativeLayout.LayoutParams params_lo_red=(LayoutParams) ivRedPoint.getLayoutParams();
+				params_lo_red.leftMargin=leftMargin;
+				ivRedPoint.setLayoutParams(params_lo_red);
 			}
 			
 			@Override
