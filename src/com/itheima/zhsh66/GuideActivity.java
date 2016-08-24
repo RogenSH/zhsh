@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,8 +29,10 @@ public class GuideActivity extends Activity {
 	private LinearLayout llContainer;
 
 	private ImageView ivRedPoint;
-	
+
 	private int mPointWidth;
+
+	private Button btn_start;
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -44,9 +47,12 @@ public class GuideActivity extends Activity {
 		llContainer = (LinearLayout) findViewById(R.id.ll_container_guide);
 
 		ivRedPoint=(ImageView)findViewById(R.id.iv_red_point);
+
+		btn_start=(Button) findViewById(R.id.btn_start);
 		
 		mImageViewList = new ArrayList<ImageView>();
 
+		
 		// 在此处初始化ImageView可以减少初始化的次数，防止每次都进行初始化.以后使用只要从集合中取即可。
 		for (int i = 0; i < mImageIds.length; i++) {
 			ImageView view = new ImageView(this);
@@ -97,7 +103,11 @@ public class GuideActivity extends Activity {
 			
 			@Override
 			public void onPageSelected(int position) {
-				// TODO Auto-generated method stub
+				if(position==mImageIds.length-1){
+					btn_start.setVisibility(View.VISIBLE);
+				}else{
+					btn_start.setVisibility(View.GONE);
+				}
 				
 			}
 			
