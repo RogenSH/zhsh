@@ -156,5 +156,17 @@ public class SplashActivity extends Activity {
 ```
 + 初始化并且将shape添加至LinearLayout中
 + 调整参数，对点的大小，间距等进行调整
-+ 设置滑动事件
++ 设置滑动事件：在监听过程中不断回调计算红点位置，通过计算实时的位置设置其边距
++ 设置页面切换事件监听，实现在最后一页才显示“开始体验”的Button
++ 设置点击事件：添加xml状态选择器，一个设置为当点击时更换图片；一个设置字体颜色。然后在XML的相关控件中对应属性。
 
+----
+
+### 主页面
+1. 创建主页布局与侧边栏布局并关联及设置属性
+2. 设置基类Fragment实现两个主要方法：
++ 初始化布局initView
++ 初始化数据initData
+3. 创建主页面的Fragment与侧边栏的Fragment，并且使用FragmentManager中的方法替换掉main_Activity.xml与left_menu.xml的布局。这样做的原因是将主页与侧边栏的代码从MainActivity中分离开，由两个Fragment分别处理。如果不这样做也可以实现相同功能，但这样做可以提高稳定性与效率，同时减少代码的复杂度。
+
+4. 
