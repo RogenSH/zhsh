@@ -4,12 +4,57 @@
     android:layout_height="match_parent"
     android:background="#f00"
     android:orientation="vertical" >
-    
 
-    <TextView 
-        android:layout_width="wrap_content"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="侧边栏"/>
-    
-    
+        android:layout_gravity="center"
+        android:background="@drawable/bottom_tab_bg"
+        android:orientation="horizontal" >
+
+        <!--
+       Style模版
+       <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:drawableTop="@drawable/home"
+            android:padding="5dp"
+            android:text="首页" />
+        -->
+
+        <RadioButton
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/home"
+            android:text="首页" />
+
+        <RadioButton
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/home"
+            android:text="新闻中心" />
+
+        <RadioButton
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/home"
+            android:text="智慧服务" />
+
+        <RadioButton
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/home"
+            android:text="政务" />
+
+        <RadioButton
+            style="@style/BottomTabStyle"
+            android:drawableTop="@drawable/home"
+            android:text="设置" />
+    </RadioGroup>
+
 </LinearLayout>
