@@ -2,7 +2,9 @@ package com.itheima.zhsh66;
 
 import java.util.ArrayList;
 
+import utils.PrefUtils;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -50,11 +52,11 @@ public class GuideActivity extends Activity implements OnClickListener {
 		ivRedPoint=(ImageView)findViewById(R.id.iv_red_point);
 
 		btn_start=(Button) findViewById(R.id.btn_start);
-		
-		mImageViewList = new ArrayList<ImageView>();
+		btn_start.setOnClickListener(this);
 
 		
 		// 在此处初始化ImageView可以减少初始化的次数，防止每次都进行初始化.以后使用只要从集合中取即可。
+		mImageViewList = new ArrayList<ImageView>();
 		for (int i = 0; i < mImageIds.length; i++) {
 			ImageView view = new ImageView(this);
 			view.setBackgroundResource(mImageIds[i]);
@@ -175,7 +177,10 @@ public class GuideActivity extends Activity implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.btn_start:
-			startActivities(new Intent(this,MainActivity.class));
+			//表示已经展现过，下次就不再展现
+			PrefUtils.putBoolean("is_guide_show", true, this);
+			startActivity(new Intent(this,MainActivity.class));
+			finish();
 			break;
 
 			
