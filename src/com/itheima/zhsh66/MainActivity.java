@@ -6,8 +6,7 @@ import base.impl.LeftMenuFragment;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import android.app.Activity;
-import android.app.FragmentManager;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Window;
@@ -28,7 +27,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		setBehindContentView(R.layout.left_menu);
 		SlidingMenu slidingMenu = getSlidingMenu();
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		slidingMenu.setBehindOffset(200);
+		slidingMenu.setBehindOffset(500);
 
 		initFragment();
 	}
