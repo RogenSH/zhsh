@@ -28,5 +28,7 @@
         <activity android:name="com.itheima.zhsh66.GuideActivity" >
         </activity>
     </application>
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
