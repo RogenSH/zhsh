@@ -5,13 +5,14 @@
 
     android:orientation="vertical" >
 
-    <android.support.v4.view.ViewPager
+    <view.NoScrollViewPager
         android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
     <RadioGroup
+        android:id="@+id/rg_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
