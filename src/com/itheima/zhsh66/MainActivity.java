@@ -9,11 +9,12 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.view.Window;
 
 public class MainActivity extends SlidingFragmentActivity {
-	private static final String TAG_CONTENT = null;
-	private static final String TAG_LEFTMENU = null;
+	private static final String TAG_CONTENT = "TAG_LEFT_MENU";
+	private static final String TAG_LEFTMENU = "TAG_CONTENT";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	private void initFragment() {
 		//Fragment管理器
 		// getFragmentManager()也可以操作，但是此方法是4.0后支持的，下面的方法可以向下支持2.0,兼容性较好
-		android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction transaction=fm.beginTransaction();//开始事务
 		//将帧布局替换为对应的Fragment,TAG方便后期寻找Fragment
 		//fm.findFragmentByTag(TAG_CONTENT);
@@ -45,6 +46,13 @@ public class MainActivity extends SlidingFragmentActivity {
 		transaction.replace(R.id.fl_left_menu, new LeftMenuFragment(),TAG_LEFTMENU);
 		transaction.commit();//提交事务
 		
+	}
+	
+	//获取侧边栏对象
+	public LeftMenuFragment getLeftMenuFragment(){
+		FragmentManager fm = getSupportFragmentManager();
+		LeftMenuFragment fragment=(LeftMenuFragment) fm.findFragmentByTag(TAG_LEFTMENU);
+		return fragment;
 	}
 
 }

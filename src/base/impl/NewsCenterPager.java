@@ -3,6 +3,7 @@ package base.impl;
 import global.Constants;
 
 import com.google.gson.Gson;
+import com.itheima.zhsh66.MainActivity;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -83,12 +84,14 @@ public class NewsCenterPager extends BasePager {
 		mNewsMenuData = gson.fromJson(result, NewsMenuData.class);
 		System.out.println("解析结果:" + mNewsMenuData);
 
-//		// 获取侧边栏对象
-//		MainActivity mainUI = (MainActivity) mActivity;
-//		LeftMenuFragment leftMenuFragment = mainUI.getLeftMenuFragment();
-//		// 将网络数据设置给侧边栏
-//		leftMenuFragment.setData(mNewsMenuData.data);
-//
+		// 获取侧边栏对象
+		MainActivity mainUi=(MainActivity) mActivity;
+		LeftMenuFragment leftMenuFragment=mainUi.getLeftMenuFragment();
+		// 将网络数据设置给侧边栏
+		leftMenuFragment.setData(mNewsMenuData.data);
+		
+
+
 //		// 初始化4个菜单详情页
 //		mMenuDetailPagers = new ArrayList<BaseMenuDetailPager>();
 //		mMenuDetailPagers.add(new NewsMenuDetailPager(mActivity,
