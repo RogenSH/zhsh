@@ -137,7 +137,7 @@ public class ContentFragment extends BaseFragment {
 		} else {
 			// 禁用掉侧边栏滑动效果
 			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
-		}
+		} 
 	}
 
 }
