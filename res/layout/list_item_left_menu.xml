@@ -9,11 +9,10 @@
         android:id="@+id/tv_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/menu_arr_normal"
+        android:drawableLeft="@drawable/btn_arrow_select"
         android:drawablePadding="3dp"
         android:padding="15dp"
-        android:text="TextView"
-        android:textColor="#fff"
+        android:textColor="@color/txt_menu_select"
         android:textSize="20sp" />
 
 </LinearLayout>
